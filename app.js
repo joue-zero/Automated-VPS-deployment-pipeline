@@ -6,7 +6,7 @@ app.get('/', (req, res) => {
   res.json({ status: 'ok', version: process.env.APP_VERSION || '1.0.0' });
 });
 
-app.get('/healthz', (req, res) => {
+app.get('/health', (req, res) => {
   res.status(200).json({ healthy: true });
 });
 
