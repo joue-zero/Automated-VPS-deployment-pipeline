@@ -10,8 +10,10 @@ app.get('/health', (req, res) => {
   res.status(200).json({ healthy: true });
 });
 
-// Only start the server if this file is run directly (node app.js)
-// If it's required by Jest, it won't start the listener.
+// Only start listening if this file is run directly
+// When imported by tests, skip this — supertest handles the port
 if (require.main === module) {
-    app.listen(PORT, () => console.log(`Running on ${PORT}`));
+  app.listen(PORT, () => console.log(`Running on ${PORT}`));
 }
+
+module.exports = app;  // export the app, not the server
